@@ -105,11 +105,11 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         
         var selectedMove: ARFaceAnchor.BlendShapeLocation? = nil
         
-        let blends: [ARFaceAnchor.BlendShapeLocation] = [.browInnerUp, .mouthRight, .jawOpen]
+        let blends: [ARFaceAnchor.BlendShapeLocation] = [.browInnerUp, .mouthRight, .jawOpen, .tongueOut, .mouthLeft, .eyeBlinkLeft, .eyeBlinkRight]
         
         for move in blends {
             guard let faceFactor = faceAnchor.blendShapes[move] as? Float else {return}
-            if (faceFactor > 0.5){
+            if (faceFactor > 0.8){
                 if selectedMove == nil{
                     selectedMove = move
                 }
@@ -125,25 +125,29 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         if(self.currentMove != selectedMove) {
             //self.ARViewDelegate.handleFaceExpression(faceExpression: selectedMove)
             self.currentMove = selectedMove
-            if self.currentMove == .browInnerUp {
+            if player1 == nil || player1?.isPlaying == false{
+            if self.currentMove == .mouthLeft {
+                print("mouth")
                 playSound(title: "A", type: "m4a")
-            } else if self.currentMove == .mouthRight {
+            } else if self.currentMove == .eyeBlinkRight {
                 playSound(title: "B", type: "m4a")
-            } else if self.currentMove == .jawOpen {
+            } else if self.currentMove == .tongueOut {
                 playSound(title: "C", type: "m4a")
             }
+            else if self.currentMove == .mouthRight {
+                playSound(title: "D", type: "m4a")
+            }
+            else if self.currentMove == .browInnerUp {
+                playSound(title: "E", type: "m4a")
+            }
+            else if self.currentMove == .eyeBlinkLeft {
+                playSound(title: "F", type: "m4a")
+            }
+            else if self.currentMove == .jawOpen {
+                playSound(title: "G", type: "m4a")
+            }
+            }
         }
-        
-        let blendShapes:[ARFaceAnchor.BlendShapeLocation:Any] = faceAnchor.blendShapes
-        
-        guard let browInnerUp = blendShapes[.browInnerUp] as? Float else {return}
-        guard let jawOpen = blendShapes[.jawOpen] as? Float else {return}
-        guard let tongueOut = blendShapes[.tongueOut] as? Float else {return}
-        guard let mouthRight = blendShapes[.mouthRight] as? Float else {return}
-        guard let mouthLeft = blendShapes[.mouthLeft] as? Float else {return}
-        guard let eyeBlinkLeft = blendShapes[.eyeBlinkLeft] as? Float else {return}
-        guard let eyeBlinkRight = blendShapes[.eyeBlinkRight] as? Float else {return}
-        
     }
     
     func playSound(title: String, type: String){
