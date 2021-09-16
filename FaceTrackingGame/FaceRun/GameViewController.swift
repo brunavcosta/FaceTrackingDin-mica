@@ -143,27 +143,22 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
             //self.ARViewDelegate.handleFaceExpression(faceExpression: selectedMove)
             self.currentMove = selectedMove
             if ableToPLay{
+                
                 if self.currentMove == .mouthLeft {
-                    print("mouth")
                     playSound(title: "C", type: "m4a")
                 } else if self.currentMove == .eyeBlinkRight {
                     playSound(title: "D", type: "m4a")
                 } else if self.currentMove == .tongueOut {
                     playSound(title: "E", type: "m4a")
-                }
-                else if self.currentMove == .mouthRight {
+                } else if self.currentMove == .mouthRight {
                     playSound(title: "F", type: "m4a")
-                }
-                else if self.currentMove == .browInnerUp {
+                } else if self.currentMove == .browInnerUp {
                     playSound(title: "G", type: "m4a")
-                }
-                else if self.currentMove == .eyeBlinkLeft {
+                } else if self.currentMove == .eyeBlinkLeft {
                     playSound(title: "A", type: "m4a")
-                }
-                else if self.currentMove == .jawOpen {
+                } else if self.currentMove == .jawOpen {
                     playSound(title: "B", type: "m4a")
                 }
-                
             }
         }
         
