@@ -9,16 +9,21 @@
 import UIKit
 import SpriteKit
 import ARKit
+import AVFoundation
 
-class GameViewController: UIViewController, ARSessionDelegate {
+class GameViewController: UIViewController, ARSCNViewDelegate {
     
     var gameScene:GameScene!
     var session:ARSession!
     
+    var sceneView: ARSCNView?
     var player1:AVAudioPlayer?
+    var currentMove: ARFaceAnchor.BlendShapeLocation? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        sceneView = ARSCNView(frame: .zero)
         
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
@@ -26,7 +31,7 @@ class GameViewController: UIViewController, ARSessionDelegate {
                 gameScene = scene
                 // Set the scale mode to scale to fit the window
                 gameScene.scaleMode = .aspectFill
-            
+                
                 // Present the scene
                 view.presentScene(gameScene)
             }
@@ -36,26 +41,47 @@ class GameViewController: UIViewController, ARSessionDelegate {
             view.showsFPS = true
             view.showsNodeCount = true
             
-            session = ARSession()
-            session.delegate = self
+            //session = ARSession()
+            //session.delegate = self
+            
+            sceneView?.frame = CGRect(x: 0, y: 40, width: 150, height: 200)
+            sceneView?.backgroundColor = .red
+            
+            if let sceneView = sceneView {
+                view.addSubview(sceneView)
+            }
+            
+            let cubeNode = SCNNode(geometry: SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0))
+            cubeNode.position = SCNVector3(0, 0, -0.2) // SceneKit/AR coordinates are in meters
+            //sceneView?.scene.rootNode.addChildNode(cubeNode)
+            
         }
     }
-
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        guard ARFaceTrackingConfiguration.isSupported else {print("iPhone X required"); return}
+        guard ARFaceTrackingConfiguration.isSupported else { print("iPhone X required"); return }
         
         let configuration = ARFaceTrackingConfiguration()
+        if #available(iOS 13.0, *) {
+            configuration.maximumNumberOfTrackedFaces = ARFaceTrackingConfiguration.supportedNumberOfTrackedFaces
+        }
         
-        session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
-        
+        configuration.isLightEstimationEnabled = true
+        sceneView?.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
+        sceneView?.delegate = self
     }
     
     override var shouldAutorotate: Bool {
         return true
     }
-
+    
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         if UIDevice.current.userInterfaceIdiom == .phone {
             return .allButUpsideDown
@@ -63,48 +89,60 @@ class GameViewController: UIViewController, ARSessionDelegate {
             return .all
         }
     }
-
+    
     override var prefersStatusBarHidden: Bool {
         return true
     }
     
-    
-    // MARK: ARSession Delegate
-    func session(_ session: ARSession, didUpdate anchors: [ARAnchor]) {
-        if let faceAnchor = anchors.first as? ARFaceAnchor {
+    //    // MARK: ARSession Delegate
+    func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
+        if let faceAnchor = anchor as? ARFaceAnchor {
             update(withFaceAnchor: faceAnchor)
         }
     }
-    
-    
+
     func update(withFaceAnchor faceAnchor: ARFaceAnchor) {
-        let bledShapes:[ARFaceAnchor.BlendShapeLocation:Any] = faceAnchor.blendShapes
         
-        guard let browInnerUp = bledShapes[.browInnerUp] as? Float else {return}
-        guard let jawOpen = bledShapes[.jawOpen] as? Float else {return}
-        guard let tongueOut = bledShapes[.tongueOut] as? Float else {return}
-        guard let mouthRight = bledShapes[.mouthRight] as? Float else {return}
-        guard let mouthLeft = bledShapes[.mouthLeft] as? Float else {return}
-        guard let eyeBlinkLeft = bledShapes[.eyeBlinkLeft] as? Float else {return}
-        guard let eyeBlinkRight = bledShapes[.eyeBlinkRight] as? Float else {return}
-        //print(browInnerUp)
+        var selectedMove: ARFaceAnchor.BlendShapeLocation? = nil
         
-        if browInnerUp > 0.5 {
-            print("EUUU")
-            playSound(title: "A", type: "m4a")
-        } else if jawOpen > 0.5 {
-            playSound(title: "B", type: "m4a")
-        } else if tongueOut > 0.5{
-            playSound(title: "C", type: "m4a")
-        } else if mouthRight > 0.5{
-            playSound(title: "D", type: "m4a")
-        } else if mouthLeft > 0.5{
-            playSound(title: "E", type: "m4a")
-        } else if eyeBlinkLeft > 0.5{
-            playSound(title: "F", type: "m4a")
-        } else if eyeBlinkRight > 0.5{
-            playSound(title: "G", type: "m4a")
+        let blends: [ARFaceAnchor.BlendShapeLocation] = [.browInnerUp, .mouthRight, .jawOpen]
+        
+        for move in blends {
+            guard let faceFactor = faceAnchor.blendShapes[move] as? Float else {return}
+            if (faceFactor > 0.5){
+                if selectedMove == nil{
+                    selectedMove = move
+                }
+                else{
+                    guard let maxFactor = faceAnchor.blendShapes[selectedMove!] as? Float else {return}
+                    if faceFactor > maxFactor {
+                        selectedMove = move
+                    }
+                }
+            }
         }
+        
+        if(self.currentMove != selectedMove) {
+            //self.ARViewDelegate.handleFaceExpression(faceExpression: selectedMove)
+            self.currentMove = selectedMove
+            if self.currentMove == .browInnerUp {
+                playSound(title: "A", type: "m4a")
+            } else if self.currentMove == .mouthRight {
+                playSound(title: "B", type: "m4a")
+            } else if self.currentMove == .jawOpen {
+                playSound(title: "C", type: "m4a")
+            }
+        }
+        
+        let blendShapes:[ARFaceAnchor.BlendShapeLocation:Any] = faceAnchor.blendShapes
+        
+        guard let browInnerUp = blendShapes[.browInnerUp] as? Float else {return}
+        guard let jawOpen = blendShapes[.jawOpen] as? Float else {return}
+        guard let tongueOut = blendShapes[.tongueOut] as? Float else {return}
+        guard let mouthRight = blendShapes[.mouthRight] as? Float else {return}
+        guard let mouthLeft = blendShapes[.mouthLeft] as? Float else {return}
+        guard let eyeBlinkLeft = blendShapes[.eyeBlinkLeft] as? Float else {return}
+        guard let eyeBlinkRight = blendShapes[.eyeBlinkRight] as? Float else {return}
         
     }
     
@@ -118,12 +156,22 @@ class GameViewController: UIViewController, ARSessionDelegate {
             try AVAudioSession.sharedInstance().setActive(true)
             player1 = try AVAudioPlayer(contentsOf: url)
             guard let player1 = player1 else {return}
-            player1.prepareToPlay()
             player1.play()
         }
         catch let error{
             print(error.localizedDescription)
         }
     }
+    
+    
+}
 
+/// For forwarding `ARSCNViewDelegate` messages to the object controlling the currently visible virtual content.
+protocol VirtualContentController: ARSCNViewDelegate {
+    /// The root node for the virtual content.
+    var contentNode: SCNNode? { get set }
+    
+    func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode?
+    
+    func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor)
 }
