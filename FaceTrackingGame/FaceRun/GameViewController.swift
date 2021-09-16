@@ -47,6 +47,9 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
             
             sceneView?.frame = CGRect(x: 20, y: 40, width: 130, height: 200)
             sceneView?.backgroundColor = .red
+            sceneView?.layer.cornerRadius = 10
+            sceneView?.layer.masksToBounds = true
+            sceneView?.clipsToBounds = true
             self.sceneView?.layer.borderWidth = 3
             self.sceneView?.layer.borderColor = UIColor.systemOrange.cgColor
             
