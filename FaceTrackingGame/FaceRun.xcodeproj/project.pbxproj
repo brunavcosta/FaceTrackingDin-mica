@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,8 +15,7 @@
 		52D2907C20DBD2C800A46370 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52D2907B20DBD2C800A46370 /* Assets.xcassets */; };
 		52D2907F20DBD2C800A46370 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52D2907D20DBD2C800A46370 /* LaunchScreen.storyboard */; };
 		52D2908920DBE44900A46370 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D2908820DBE44900A46370 /* Player.swift */; };
-		F12462EE26F2A7C50011441C /* audio1.wav in Resources */ = {isa = PBXBuildFile; fileRef = F12462ED26F2A7C50011441C /* audio1.wav */; };
-		F12462F126F2AA710011441C /* fireplace.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F12462F026F2AA710011441C /* fireplace.mp3 */; };
+		8D3B889226F3A8D700A7A841 /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8D3B889126F3A8D700A7A841 /* AudioKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,9 +29,6 @@
 		52D2907E20DBD2C800A46370 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		52D2908020DBD2C800A46370 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52D2908820DBE44900A46370 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
-		F12462ED26F2A7C50011441C /* audio1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = audio1.wav; sourceTree = "<group>"; };
-		F12462EF26F2A9790011441C /* alarm.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = alarm.m4a; sourceTree = "<group>"; };
-		F12462F026F2AA710011441C /* fireplace.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fireplace.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +36,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D3B889226F3A8D700A7A841 /* AudioKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,9 +67,6 @@
 				52D2907420DBD2C600A46370 /* GameScene.swift */,
 				52D2908820DBE44900A46370 /* Player.swift */,
 				52D2907620DBD2C600A46370 /* GameViewController.swift */,
-				F12462F026F2AA710011441C /* fireplace.mp3 */,
-				F12462ED26F2A7C50011441C /* audio1.wav */,
-				F12462EF26F2A9790011441C /* alarm.m4a */,
 				52D2907820DBD2C600A46370 /* Main.storyboard */,
 				52D2907B20DBD2C800A46370 /* Assets.xcassets */,
 				52D2907D20DBD2C800A46370 /* LaunchScreen.storyboard */,
@@ -97,6 +91,9 @@
 			dependencies = (
 			);
 			name = FaceRun;
+			packageProductDependencies = (
+				8D3B889126F3A8D700A7A841 /* AudioKit */,
+			);
 			productName = FaceRun;
 			productReference = 52D2906B20DBD2C600A46370 /* FaceRun.app */;
 			productType = "com.apple.product-type.application";
@@ -125,6 +122,9 @@
 				Base,
 			);
 			mainGroup = 52D2906220DBD2C600A46370;
+			packageReferences = (
+				8D3B889026F3A8D700A7A841 /* XCRemoteSwiftPackageReference "AudioKit" */,
+			);
 			productRefGroup = 52D2906C20DBD2C600A46370 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -141,9 +141,7 @@
 			files = (
 				52D2907A20DBD2C600A46370 /* Main.storyboard in Resources */,
 				52D2907120DBD2C600A46370 /* GameScene.sks in Resources */,
-				F12462F126F2AA710011441C /* fireplace.mp3 in Resources */,
 				52D2907C20DBD2C800A46370 /* Assets.xcassets in Resources */,
-				F12462EE26F2A7C50011441C /* audio1.wav in Resources */,
 				52D2907F20DBD2C800A46370 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -306,13 +304,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8435JRD5SK;
+				DEVELOPMENT_TEAM = 5J4WXMTZ2V;
 				INFOPLIST_FILE = FaceRun/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.brianadvent.FaceRun;
+				PRODUCT_BUNDLE_IDENTIFIER = com.FaceTrackingDinamica;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
@@ -326,13 +324,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8435JRD5SK;
+				DEVELOPMENT_TEAM = 5J4WXMTZ2V;
 				INFOPLIST_FILE = FaceRun/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.brianadvent.FaceRun;
+				PRODUCT_BUNDLE_IDENTIFIER = com.FaceTrackingDinamica;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
@@ -362,6 +360,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8D3B889026F3A8D700A7A841 /* XCRemoteSwiftPackageReference "AudioKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/AudioKit/";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.2.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8D3B889126F3A8D700A7A841 /* AudioKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8D3B889026F3A8D700A7A841 /* XCRemoteSwiftPackageReference "AudioKit" */;
+			productName = AudioKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 52D2906320DBD2C600A46370 /* Project object */;
 }

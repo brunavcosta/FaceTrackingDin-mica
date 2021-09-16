@@ -9,13 +9,14 @@
 import UIKit
 import SpriteKit
 import ARKit
-import AVFoundation
+
+
+
 
 class GameViewController: UIViewController, ARSessionDelegate {
-
+    
     var gameScene:GameScene!
     var session:ARSession!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,26 +79,30 @@ class GameViewController: UIViewController, ARSessionDelegate {
     
     
     func update(withFaceAnchor faceAnchor: ARFaceAnchor) {
-        var bledShapes:[ARFaceAnchor.BlendShapeLocation:Any] = faceAnchor.blendShapes
+        let bledShapes:[ARFaceAnchor.BlendShapeLocation:Any] = faceAnchor.blendShapes
         
         guard let browInnerUp = bledShapes[.browInnerUp] as? Float else {return}
-        guard let cheekPuff = bledShapes[.cheekPuff] as? Float else {return}
-        guard let eyeLookInLeft = bledShapes[.eyeLookInLeft] as? Float else {return}
-        guard let eyeLookInRight = bledShapes[.eyeLookInRight] as? Float else {return}
+        guard let jawOpen = bledShapes[.jawOpen] as? Float else {return}
+        guard let tongueOut = bledShapes[.tongueOut] as? Float else {return}
+        guard let mouthRight = bledShapes[.mouthRight] as? Float else {return}
+        guard let mouthLeft = bledShapes[.mouthLeft] as? Float else {return}
+        guard let eyeBlinkLeft = bledShapes[.eyeBlinkLeft] as? Float else {return}
+        guard let eyeBlinkRight = bledShapes[.eyeBlinkRight] as? Float else {return}
         //print(browInnerUp)
         
         if browInnerUp > 0.5 {
-            gameScene.updatePlayer(state: .up)
-        }else if browInnerUp < 0.025 || cheekPuff > 0.75 {
-            gameScene.updatePlayer(state: .down)
-        }else if eyeLookInLeft > 0.5{
-            gameScene.updatePlayer(state: .left)
-        }
-        else if eyeLookInRight > 0.5{
-            gameScene.updatePlayer(state: .right)
-        }
-        else {
-            gameScene.updatePlayer(state: .neutral)
+
+        } else if jawOpen > 0.5 {
+
+        } else if tongueOut > 0.5{
+
+        } else if mouthRight > 0.5{
+          
+        } else if mouthLeft > 0.5{
+          
+        } else if eyeBlinkLeft > 0.5{
+          
+        } else if eyeBlinkRight > 0.5{
         }
         
     }
