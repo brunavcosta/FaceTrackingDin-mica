@@ -21,6 +21,9 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     var player1:AVAudioPlayer?
     var currentMove: ARFaceAnchor.BlendShapeLocation? = nil
     
+    var timer = Timer()
+    var ableToPLay = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -60,6 +63,14 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
             let cubeNode = SCNNode(geometry: SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0))
             cubeNode.position = SCNVector3(0, 0, -0.2) // SceneKit/AR coordinates are in meters
             //sceneView?.scene.rootNode.addChildNode(cubeNode)
+            
+        }
+        
+        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(letItPlay), userInfo: nil, repeats: true)
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {
             
         }
     }
@@ -106,7 +117,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
             update(withFaceAnchor: faceAnchor)
         }
     }
-
+    
     func update(withFaceAnchor faceAnchor: ARFaceAnchor) {
         
         var selectedMove: ARFaceAnchor.BlendShapeLocation? = nil
@@ -131,27 +142,27 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         if(self.currentMove != selectedMove) {
             //self.ARViewDelegate.handleFaceExpression(faceExpression: selectedMove)
             self.currentMove = selectedMove
-            if player1 == nil || player1?.isPlaying == false{
-            if self.currentMove == .mouthLeft {
-                print("mouth")
-                playSound(title: "A", type: "m4a")
-            } else if self.currentMove == .eyeBlinkRight {
-                playSound(title: "B", type: "m4a")
-            } else if self.currentMove == .tongueOut {
-                playSound(title: "C", type: "m4a")
-            }
-            else if self.currentMove == .mouthRight {
-                playSound(title: "D", type: "m4a")
-            }
-            else if self.currentMove == .browInnerUp {
-                playSound(title: "E", type: "m4a")
-            }
-            else if self.currentMove == .eyeBlinkLeft {
-                playSound(title: "F", type: "m4a")
-            }
-            else if self.currentMove == .jawOpen {
-                playSound(title: "G", type: "m4a")
-            }
+            if ableToPLay{
+                if self.currentMove == .mouthLeft {
+                    print("mouth")
+                    playSound(title: "C", type: "m4a")
+                } else if self.currentMove == .eyeBlinkRight {
+                    playSound(title: "D", type: "m4a")
+                } else if self.currentMove == .tongueOut {
+                    playSound(title: "E", type: "m4a")
+                }
+                else if self.currentMove == .mouthRight {
+                    playSound(title: "F", type: "m4a")
+                }
+                else if self.currentMove == .browInnerUp {
+                    playSound(title: "G", type: "m4a")
+                }
+                else if self.currentMove == .eyeBlinkLeft {
+                    playSound(title: "A", type: "m4a")
+                }
+                else if self.currentMove == .jawOpen {
+                    playSound(title: "B", type: "m4a")
+                }
                 
             }
         }
@@ -173,8 +184,6 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
             return}
         let url = URL(fileURLWithPath: path)
         do {
-            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
-            try AVAudioSession.sharedInstance().setActive(true)
             player1 = try AVAudioPlayer(contentsOf: url)
             guard let player1 = player1 else {return}
             player1.play()
@@ -185,6 +194,9 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         
     }
     
+    @objc func letItPlay() {
+        ableToPLay = true
+    }
     
 }
 

@@ -16,13 +16,13 @@
 		52D2907F20DBD2C800A46370 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52D2907D20DBD2C800A46370 /* LaunchScreen.storyboard */; };
 		52D2908920DBE44900A46370 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D2908820DBE44900A46370 /* Player.swift */; };
 		8D3B889226F3A8D700A7A841 /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8D3B889126F3A8D700A7A841 /* AudioKit */; };
-		CFAEEE5026F3BCA8005B4F92 /* F.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CFAEEE4926F3BC81005B4F92 /* F.m4a */; };
-		CFAEEE5126F3BCA8005B4F92 /* D.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CFAEEE4E26F3BC82005B4F92 /* D.m4a */; };
-		CFAEEE5226F3BCA8005B4F92 /* E.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CFAEEE4A26F3BC81005B4F92 /* E.m4a */; };
-		CFAEEE5326F3BCA8005B4F92 /* A.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CFAEEE4D26F3BC82005B4F92 /* A.m4a */; };
-		CFAEEE5426F3BCA8005B4F92 /* B.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CFAEEE4C26F3BC81005B4F92 /* B.m4a */; };
-		CFAEEE5526F3BCA8005B4F92 /* C.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CFAEEE4B26F3BC81005B4F92 /* C.m4a */; };
-		CFAEEE5626F3BCA8005B4F92 /* G.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CFAEEE4F26F3BC82005B4F92 /* G.m4a */; };
+		CFAEEE5026F3BCA8005B4F92 /* A.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CFAEEE4926F3BC81005B4F92 /* A.m4a */; };
+		CFAEEE5126F3BCA8005B4F92 /* F.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CFAEEE4E26F3BC82005B4F92 /* F.m4a */; };
+		CFAEEE5226F3BCA8005B4F92 /* G.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CFAEEE4A26F3BC81005B4F92 /* G.m4a */; };
+		CFAEEE5326F3BCA8005B4F92 /* C.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CFAEEE4D26F3BC82005B4F92 /* C.m4a */; };
+		CFAEEE5426F3BCA8005B4F92 /* D.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CFAEEE4C26F3BC81005B4F92 /* D.m4a */; };
+		CFAEEE5526F3BCA8005B4F92 /* E.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CFAEEE4B26F3BC81005B4F92 /* E.m4a */; };
+		CFAEEE5626F3BCA8005B4F92 /* B.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CFAEEE4F26F3BC82005B4F92 /* B.m4a */; };
 		CFAEEE5826F3BEBA005B4F92 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAEEE5726F3BEBA005B4F92 /* CameraView.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,13 +37,13 @@
 		52D2907E20DBD2C800A46370 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		52D2908020DBD2C800A46370 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52D2908820DBE44900A46370 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
-		CFAEEE4926F3BC81005B4F92 /* F.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = F.m4a; sourceTree = "<group>"; };
-		CFAEEE4A26F3BC81005B4F92 /* E.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = E.m4a; sourceTree = "<group>"; };
-		CFAEEE4B26F3BC81005B4F92 /* C.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = C.m4a; sourceTree = "<group>"; };
-		CFAEEE4C26F3BC81005B4F92 /* B.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = B.m4a; sourceTree = "<group>"; };
-		CFAEEE4D26F3BC82005B4F92 /* A.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = A.m4a; sourceTree = "<group>"; };
-		CFAEEE4E26F3BC82005B4F92 /* D.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = D.m4a; sourceTree = "<group>"; };
-		CFAEEE4F26F3BC82005B4F92 /* G.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = G.m4a; sourceTree = "<group>"; };
+		CFAEEE4926F3BC81005B4F92 /* A.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = A.m4a; sourceTree = "<group>"; };
+		CFAEEE4A26F3BC81005B4F92 /* G.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = G.m4a; sourceTree = "<group>"; };
+		CFAEEE4B26F3BC81005B4F92 /* E.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = E.m4a; sourceTree = "<group>"; };
+		CFAEEE4C26F3BC81005B4F92 /* D.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = D.m4a; sourceTree = "<group>"; };
+		CFAEEE4D26F3BC82005B4F92 /* C.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = C.m4a; sourceTree = "<group>"; };
+		CFAEEE4E26F3BC82005B4F92 /* F.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = F.m4a; sourceTree = "<group>"; };
+		CFAEEE4F26F3BC82005B4F92 /* B.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = B.m4a; sourceTree = "<group>"; };
 		CFAEEE5726F3BEBA005B4F92 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -85,13 +85,13 @@
 				52D2907620DBD2C600A46370 /* GameViewController.swift */,
 				CFAEEE5726F3BEBA005B4F92 /* CameraView.swift */,
 				52D2907820DBD2C600A46370 /* Main.storyboard */,
-				CFAEEE4D26F3BC82005B4F92 /* A.m4a */,
-				CFAEEE4C26F3BC81005B4F92 /* B.m4a */,
-				CFAEEE4B26F3BC81005B4F92 /* C.m4a */,
-				CFAEEE4E26F3BC82005B4F92 /* D.m4a */,
-				CFAEEE4A26F3BC81005B4F92 /* E.m4a */,
-				CFAEEE4926F3BC81005B4F92 /* F.m4a */,
-				CFAEEE4F26F3BC82005B4F92 /* G.m4a */,
+				CFAEEE4D26F3BC82005B4F92 /* C.m4a */,
+				CFAEEE4C26F3BC81005B4F92 /* D.m4a */,
+				CFAEEE4B26F3BC81005B4F92 /* E.m4a */,
+				CFAEEE4E26F3BC82005B4F92 /* F.m4a */,
+				CFAEEE4A26F3BC81005B4F92 /* G.m4a */,
+				CFAEEE4926F3BC81005B4F92 /* A.m4a */,
+				CFAEEE4F26F3BC82005B4F92 /* B.m4a */,
 				52D2907B20DBD2C800A46370 /* Assets.xcassets */,
 				52D2907D20DBD2C800A46370 /* LaunchScreen.storyboard */,
 				52D2908020DBD2C800A46370 /* Info.plist */,
@@ -164,16 +164,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CFAEEE5626F3BCA8005B4F92 /* G.m4a in Resources */,
-				CFAEEE5426F3BCA8005B4F92 /* B.m4a in Resources */,
-				CFAEEE5026F3BCA8005B4F92 /* F.m4a in Resources */,
+				CFAEEE5626F3BCA8005B4F92 /* B.m4a in Resources */,
+				CFAEEE5426F3BCA8005B4F92 /* D.m4a in Resources */,
+				CFAEEE5026F3BCA8005B4F92 /* A.m4a in Resources */,
 				52D2907A20DBD2C600A46370 /* Main.storyboard in Resources */,
 				52D2907120DBD2C600A46370 /* GameScene.sks in Resources */,
-				CFAEEE5226F3BCA8005B4F92 /* E.m4a in Resources */,
-				CFAEEE5126F3BCA8005B4F92 /* D.m4a in Resources */,
-				CFAEEE5526F3BCA8005B4F92 /* C.m4a in Resources */,
+				CFAEEE5226F3BCA8005B4F92 /* G.m4a in Resources */,
+				CFAEEE5126F3BCA8005B4F92 /* F.m4a in Resources */,
+				CFAEEE5526F3BCA8005B4F92 /* E.m4a in Resources */,
 				52D2907C20DBD2C800A46370 /* Assets.xcassets in Resources */,
-				CFAEEE5326F3BCA8005B4F92 /* A.m4a in Resources */,
+				CFAEEE5326F3BCA8005B4F92 /* C.m4a in Resources */,
 				52D2907F20DBD2C800A46370 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -337,7 +337,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 83KH3JF2CE;
+				DEVELOPMENT_TEAM = 5J4WXMTZ2V;
 				INFOPLIST_FILE = FaceRun/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
