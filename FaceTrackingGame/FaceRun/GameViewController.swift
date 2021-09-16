@@ -10,6 +10,7 @@ import UIKit
 import SpriteKit
 import ARKit
 import AVFoundation
+import CryptoKit
 
 class GameViewController: UIViewController, ARSCNViewDelegate {
     
@@ -44,8 +45,10 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
             //session = ARSession()
             //session.delegate = self
             
-            sceneView?.frame = CGRect(x: 0, y: 40, width: 150, height: 200)
+            sceneView?.frame = CGRect(x: 20, y: 40, width: 130, height: 200)
             sceneView?.backgroundColor = .red
+            self.sceneView?.layer.borderWidth = 3
+            self.sceneView?.layer.borderColor = UIColor.systemOrange.cgColor
             
             if let sceneView = sceneView {
                 view.addSubview(sceneView)
@@ -146,6 +149,17 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
             else if self.currentMove == .jawOpen {
                 playSound(title: "G", type: "m4a")
             }
+                
+            }
+        }
+        
+        if player1?.isPlaying == false {
+            DispatchQueue.main.async {
+                self.sceneView?.layer.borderColor = UIColor.systemOrange.cgColor
+            }
+        } else {
+            DispatchQueue.main.async {
+                self.sceneView?.layer.borderColor = UIColor.systemGreen.cgColor
             }
         }
     }
@@ -165,6 +179,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         catch let error{
             print(error.localizedDescription)
         }
+        
     }
     
     
