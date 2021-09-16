@@ -16,6 +16,13 @@
 		52D2907F20DBD2C800A46370 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52D2907D20DBD2C800A46370 /* LaunchScreen.storyboard */; };
 		52D2908920DBE44900A46370 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D2908820DBE44900A46370 /* Player.swift */; };
 		8D3B889226F3A8D700A7A841 /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8D3B889126F3A8D700A7A841 /* AudioKit */; };
+		CFAEEE4226F3B980005B4F92 /* F.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CFAEEE3B26F3B56F005B4F92 /* F.m4a */; };
+		CFAEEE4326F3B980005B4F92 /* D.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CFAEEE3F26F3B570005B4F92 /* D.m4a */; };
+		CFAEEE4426F3B980005B4F92 /* B.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CFAEEE3D26F3B570005B4F92 /* B.m4a */; };
+		CFAEEE4526F3B980005B4F92 /* C.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CFAEEE4126F3B570005B4F92 /* C.m4a */; };
+		CFAEEE4626F3B980005B4F92 /* E.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CFAEEE3E26F3B570005B4F92 /* E.m4a */; };
+		CFAEEE4726F3B980005B4F92 /* A.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CFAEEE3C26F3B56F005B4F92 /* A.m4a */; };
+		CFAEEE4826F3B980005B4F92 /* G.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CFAEEE4026F3B570005B4F92 /* G.m4a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -124,6 +131,7 @@
 				TargetAttributes = {
 					52D2906A20DBD2C600A46370 = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1300;
 					};
 				};
 			};
@@ -153,8 +161,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFAEEE4826F3B980005B4F92 /* G.m4a in Resources */,
+				CFAEEE4726F3B980005B4F92 /* A.m4a in Resources */,
+				CFAEEE4626F3B980005B4F92 /* E.m4a in Resources */,
+				CFAEEE4526F3B980005B4F92 /* C.m4a in Resources */,
+				CFAEEE4226F3B980005B4F92 /* F.m4a in Resources */,
+				CFAEEE4426F3B980005B4F92 /* B.m4a in Resources */,
 				52D2907A20DBD2C600A46370 /* Main.storyboard in Resources */,
 				52D2907120DBD2C600A46370 /* GameScene.sks in Resources */,
+				CFAEEE4326F3B980005B4F92 /* D.m4a in Resources */,
 				52D2907C20DBD2C800A46370 /* Assets.xcassets in Resources */,
 				52D2907F20DBD2C800A46370 /* LaunchScreen.storyboard in Resources */,
 			);
@@ -318,7 +333,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5J4WXMTZ2V;
+				DEVELOPMENT_TEAM = 83KH3JF2CE;
 				INFOPLIST_FILE = FaceRun/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -327,7 +342,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.FaceTrackingDinamica;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -338,7 +353,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5J4WXMTZ2V;
+				DEVELOPMENT_TEAM = 83KH3JF2CE;
 				INFOPLIST_FILE = FaceRun/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -347,7 +362,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.FaceTrackingDinamica;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

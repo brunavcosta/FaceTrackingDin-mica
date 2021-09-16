@@ -10,13 +10,12 @@ import UIKit
 import SpriteKit
 import ARKit
 
-
-
-
 class GameViewController: UIViewController, ARSessionDelegate {
     
     var gameScene:GameScene!
     var session:ARSession!
+    
+    var player1:AVAudioPlayer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,20 +90,40 @@ class GameViewController: UIViewController, ARSessionDelegate {
         //print(browInnerUp)
         
         if browInnerUp > 0.5 {
-
+            print("EUUU")
+            playSound(title: "A", type: "m4a")
         } else if jawOpen > 0.5 {
-
+            playSound(title: "B", type: "m4a")
         } else if tongueOut > 0.5{
-
+            playSound(title: "C", type: "m4a")
         } else if mouthRight > 0.5{
-          
+            playSound(title: "D", type: "m4a")
         } else if mouthLeft > 0.5{
-          
+            playSound(title: "E", type: "m4a")
         } else if eyeBlinkLeft > 0.5{
-          
+            playSound(title: "F", type: "m4a")
         } else if eyeBlinkRight > 0.5{
+            playSound(title: "G", type: "m4a")
         }
         
+    }
+    
+    func playSound(title: String, type: String){
+        guard let path = Bundle.main.path(forResource: title, ofType: type) else {
+            print("No file.")
+            return}
+        let url = URL(fileURLWithPath: path)
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try AVAudioSession.sharedInstance().setActive(true)
+            player1 = try AVAudioPlayer(contentsOf: url)
+            guard let player1 = player1 else {return}
+            player1.prepareToPlay()
+            player1.play()
+        }
+        catch let error{
+            print(error.localizedDescription)
+        }
     }
 
 }

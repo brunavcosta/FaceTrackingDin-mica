@@ -18,7 +18,6 @@ class GameScene: SKScene {
     var generator:UIImpactFeedbackGenerator!
     var player1:AVAudioPlayer?
     
-    
     override func didMove(to view: SKView) {
         playerNode = self.childNode(withName: "player") as? Player
        
@@ -103,9 +102,10 @@ class GameScene: SKScene {
             try AVAudioSession.sharedInstance().setActive(true)
             player1 = try AVAudioPlayer(contentsOf: url)
             guard let player1 = player1 else {return}
+            player1.prepareToPlay()
             player1.play()
         }
-        catch let error as Error{
+        catch let error {
             print(error.localizedDescription)
         }
     }
