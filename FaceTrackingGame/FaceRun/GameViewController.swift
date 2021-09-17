@@ -14,6 +14,8 @@ import CryptoKit
 
 class GameViewController: UIViewController, ARSCNViewDelegate {
     
+    var drumConductor: DrumsConductor?
+    
     var gameScene:GameScene!
     var session:ARSession!
     
@@ -55,7 +57,9 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                 view.presentScene(gameScene)
             }
             
+            drumConductor = DrumsConductor.init()
             
+            self.drumConductor?.start()
             
             view.ignoresSiblingOrder = true
             
@@ -174,19 +178,26 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
             if ableToPlay{
                 
                 if self.currentMove == .mouthLeft {
-                    playWithAVAudioEngine(title: "C", type: "m4a")
+                    drumConductor?.playPad(padNumber: 0)
+                    //playWithAVAudioEngine(title: "C", type: "m4a")
                 } else if self.currentMove == .jawOpen {
-                    playWithAVAudioEngine(title: "D", type: "m4a")
+                    drumConductor?.playPad(padNumber: 1)
+                    //playWithAVAudioEngine(title: "D", type: "m4a")
                 } else if self.currentMove == .tongueOut {
-                    playWithAVAudioEngine(title: "E", type: "m4a")
+                    drumConductor?.playPad(padNumber: 2)
+                    //playWithAVAudioEngine(title: "E", type: "m4a")
                 } else if self.currentMove == .mouthRight {
-                    playWithAVAudioEngine(title: "F", type: "m4a")
+                    drumConductor?.playPad(padNumber: 3)
+                    //playWithAVAudioEngine(title: "F", type: "m4a")
                 } else if self.currentMove == .browInnerUp {
-                    playWithAVAudioEngine(title: "G", type: "m4a")
+                    drumConductor?.playPad(padNumber: 4)
+                    //playWithAVAudioEngine(title: "G", type: "m4a")
                 } else if self.currentMove == .mouthPucker {
-                    playWithAVAudioEngine(title: "A", type: "m4a")
+                    drumConductor?.playPad(padNumber: 5)
+                    //playWithAVAudioEngine(title: "A", type: "m4a")
                 } else if self.currentMove == .mouthSmileRight {
-                    playWithAVAudioEngine(title: "B", type: "m4a")
+                    drumConductor?.playPad(padNumber: 6)
+                    //playWithAVAudioEngine(title: "B", type: "m4a")
                 }
             }
         }

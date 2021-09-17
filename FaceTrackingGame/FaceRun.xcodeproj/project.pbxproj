@@ -24,6 +24,8 @@
 		CFAEEE5526F3BCA8005B4F92 /* E.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CFAEEE4B26F3BC81005B4F92 /* E.m4a */; };
 		CFAEEE5626F3BCA8005B4F92 /* B.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CFAEEE4F26F3BC82005B4F92 /* B.m4a */; };
 		CFAEEE5826F3BEBA005B4F92 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAEEE5726F3BEBA005B4F92 /* CameraView.swift */; };
+		CFBB143826F541FB00EC9E8A /* Drums.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBB143726F541FB00EC9E8A /* Drums.swift */; };
+		CFBB143A26F542F100EC9E8A /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = CFBB143926F542F100EC9E8A /* Samples */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +47,8 @@
 		CFAEEE4E26F3BC82005B4F92 /* F.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = F.m4a; sourceTree = "<group>"; };
 		CFAEEE4F26F3BC82005B4F92 /* B.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = B.m4a; sourceTree = "<group>"; };
 		CFAEEE5726F3BEBA005B4F92 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		CFBB143726F541FB00EC9E8A /* Drums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Drums.swift; sourceTree = "<group>"; };
+		CFBB143926F542F100EC9E8A /* Samples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Samples; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +87,7 @@
 				52D2907420DBD2C600A46370 /* GameScene.swift */,
 				52D2908820DBE44900A46370 /* Player.swift */,
 				52D2907620DBD2C600A46370 /* GameViewController.swift */,
+				CFBB143726F541FB00EC9E8A /* Drums.swift */,
 				CFAEEE5726F3BEBA005B4F92 /* CameraView.swift */,
 				52D2907820DBD2C600A46370 /* Main.storyboard */,
 				CFAEEE4D26F3BC82005B4F92 /* C.m4a */,
@@ -92,6 +97,7 @@
 				CFAEEE4A26F3BC81005B4F92 /* G.m4a */,
 				CFAEEE4926F3BC81005B4F92 /* A.m4a */,
 				CFAEEE4F26F3BC82005B4F92 /* B.m4a */,
+				CFBB143926F542F100EC9E8A /* Samples */,
 				52D2907B20DBD2C800A46370 /* Assets.xcassets */,
 				52D2907D20DBD2C800A46370 /* LaunchScreen.storyboard */,
 				52D2908020DBD2C800A46370 /* Info.plist */,
@@ -164,6 +170,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFBB143A26F542F100EC9E8A /* Samples in Resources */,
 				CFAEEE5626F3BCA8005B4F92 /* B.m4a in Resources */,
 				CFAEEE5426F3BCA8005B4F92 /* D.m4a in Resources */,
 				CFAEEE5026F3BCA8005B4F92 /* A.m4a in Resources */,
@@ -186,6 +193,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52D2908920DBE44900A46370 /* Player.swift in Sources */,
+				CFBB143826F541FB00EC9E8A /* Drums.swift in Sources */,
 				52D2907520DBD2C600A46370 /* GameScene.swift in Sources */,
 				52D2907720DBD2C600A46370 /* GameViewController.swift in Sources */,
 				CFAEEE5826F3BEBA005B4F92 /* CameraView.swift in Sources */,
@@ -339,6 +347,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 83KH3JF2CE;
 				INFOPLIST_FILE = FaceRun/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -359,6 +368,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 83KH3JF2CE;
 				INFOPLIST_FILE = FaceRun/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
