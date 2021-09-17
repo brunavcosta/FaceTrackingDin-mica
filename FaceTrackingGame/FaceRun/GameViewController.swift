@@ -15,8 +15,11 @@ import CryptoKit
 class GameViewController: UIViewController, ARSCNViewDelegate {
     
     var gameScene:GameScene!
+    
+    //Face Tracking
     var session:ARSession!
     
+    //Audio
     typealias Completion = (() -> Void)
     var mixer: AVAudioMixerNode = AVAudioMixerNode()
     
@@ -30,9 +33,16 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     
     var sprite: SKLabelNode?
     
+    //Play delay flag
     var timer = Timer()
     var ableToPlay = true
     
+    
+    //Constant Properties
+    let timeBetweenNotes: Double = 0.4
+    
+    
+    //MARK: - View Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -71,7 +81,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
             sceneView?.layer.masksToBounds = true
             sceneView?.clipsToBounds = true
             self.sceneView?.layer.borderWidth = 3
-            self.sceneView?.layer.borderColor = UIColor.systemOrange.cgColor
+            self.sceneView?.layer.borderColor = UIColor.systemGreen.cgColor
             
             if let sceneView = sceneView {
                 view.addSubview(sceneView)
@@ -83,7 +93,6 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
             
         }
         
-        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(letItPlay), userInfo: nil, repeats: true)
         do {
             try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
             try AVAudioSession.sharedInstance().setActive(true)
@@ -112,6 +121,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         sceneView?.delegate = self
     }
     
+    //MARK: - Methods
     override var shouldAutorotate: Bool {
         return true
     }
@@ -133,15 +143,6 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         if let faceAnchor = anchor as? ARFaceAnchor {
             update(withFaceAnchor: faceAnchor)
         }
-        
-        guard let faceAnchor = anchor as? ARFaceAnchor else { return }
-        
-        // 2
-        let leftSmileValue = faceAnchor.blendShapes[.jawOpen] as! CGFloat
-        let rightSmileValue = faceAnchor.blendShapes[.mouthSmileLeft] as! CGFloat
-        
-        // 3
-        //print(leftSmileValue)
     }
     
     func update(withFaceAnchor faceAnchor: ARFaceAnchor) {
@@ -170,57 +171,39 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
             self.currentMove = selectedMove
             
             if ableToPlay {
+                
                 if self.currentMove == .mouthLeft {
                     playWithAVAudioEngine(title: "C", type: "m4a")
-                    self.ableToPlay = false
-                    DispatchQueue.main.async {
-                        self.sceneView?.layer.borderColor = UIColor.systemOrange.cgColor
-                    }
                     
                 } else if self.currentMove == .jawOpen {
                     playWithAVAudioEngine(title: "D", type: "m4a")
-                    self.ableToPlay = false
-                    DispatchQueue.main.async {
-                        self.sceneView?.layer.borderColor = UIColor.systemOrange.cgColor
-                    }
                     
                 } else if self.currentMove == .tongueOut {
                     playWithAVAudioEngine(title: "E", type: "m4a")
-                    self.ableToPlay = false
-                    DispatchQueue.main.async {
-                        self.sceneView?.layer.borderColor = UIColor.systemOrange.cgColor
-                    }
                     
                 } else if self.currentMove == .mouthRight {
                     playWithAVAudioEngine(title: "F", type: "m4a")
-                    self.ableToPlay = false
-                    DispatchQueue.main.async {
-                        self.sceneView?.layer.borderColor = UIColor.systemOrange.cgColor
-                    }
                     
                 } else if self.currentMove == .browInnerUp {
                     playWithAVAudioEngine(title: "G", type: "m4a")
-                    self.ableToPlay = false
-                    DispatchQueue.main.async {
-                        self.sceneView?.layer.borderColor = UIColor.systemOrange.cgColor
-                    }
                     
                 } else if self.currentMove == .mouthPucker {
                     playWithAVAudioEngine(title: "A", type: "m4a")
-                    self.ableToPlay = false
-                    DispatchQueue.main.async {
-                        self.sceneView?.layer.borderColor = UIColor.systemOrange.cgColor
-                    }
                     
                 } else if self.currentMove == .mouthSmileRight {
                     playWithAVAudioEngine(title: "B", type: "m4a")
-                    self.ableToPlay = false
-                    DispatchQueue.main.async {
-                        self.sceneView?.layer.borderColor = UIColor.systemOrange.cgColor
-                    }
                     
+                } else { // If none move was found, it returns
+                    return
                 }
                 
+                //The common code to be executed after one move was recognized
+                DispatchQueue.main.async {
+                    self.sceneView?.layer.borderColor = UIColor.systemOrange.cgColor
+                }
+                self.ableToPlay = false
+                timer = Timer.scheduledTimer(timeInterval: timeBetweenNotes, target: self, selector: #selector(letItPlay), userInfo: nil, repeats: false)
+
             }
             
         }
