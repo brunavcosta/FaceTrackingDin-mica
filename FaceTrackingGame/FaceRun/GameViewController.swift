@@ -17,12 +17,19 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     var gameScene:GameScene!
     var session:ARSession!
     
+    typealias Completion = (() -> Void)
+    var mixer: AVAudioMixerNode = AVAudioMixerNode()
+    
     var sceneView: ARSCNView?
     var player1:AVAudioPlayer?
     var currentMove: ARFaceAnchor.BlendShapeLocation? = nil
     
+    var sampler: AVAudioUnitSampler!
+    var audioEngine: AVAudioEngine = AVAudioEngine()
+    var audioFilePlayer: AVAudioPlayerNode = AVAudioPlayerNode()
+    
     var timer = Timer()
-    var ableToPLay = true
+    var ableToPlay = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -142,22 +149,23 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         if(self.currentMove != selectedMove) {
             //self.ARViewDelegate.handleFaceExpression(faceExpression: selectedMove)
             self.currentMove = selectedMove
-            if ableToPLay{
+            if ableToPlay{
                 
                 if self.currentMove == .mouthLeft {
-                    playSound(title: "C", type: "m4a")
+                    sampler.startNote(0, withVelocity: 80, onChannel: 0)
+                    //playWithAVAudioEngine(title: "C", type: "m4a")
                 } else if self.currentMove == .eyeBlinkRight {
-                    playSound(title: "D", type: "m4a")
+                    playWithAVAudioEngine(title: "D", type: "m4a")
                 } else if self.currentMove == .tongueOut {
-                    playSound(title: "E", type: "m4a")
+                    playWithAVAudioEngine(title: "E", type: "m4a")
                 } else if self.currentMove == .mouthRight {
-                    playSound(title: "F", type: "m4a")
+                    playWithAVAudioEngine(title: "F", type: "m4a")
                 } else if self.currentMove == .browInnerUp {
-                    playSound(title: "G", type: "m4a")
+                    playWithAVAudioEngine(title: "G", type: "m4a")
                 } else if self.currentMove == .eyeBlinkLeft {
-                    playSound(title: "A", type: "m4a")
+                    playWithAVAudioEngine(title: "A", type: "m4a")
                 } else if self.currentMove == .jawOpen {
-                    playSound(title: "B", type: "m4a")
+                    playWithAVAudioEngine(title: "B", type: "m4a")
                 }
             }
         }
@@ -189,8 +197,62 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         
     }
     
+    func playWithAVAudioEngine(title: String, type: String){
+        guard let filePath: String = Bundle.main.path(forResource: title, ofType: type) else{ return }
+        print("\(filePath)")
+        let fileURL: URL = URL(fileURLWithPath: filePath)
+        guard let audioFile = try? AVAudioFile(forReading: fileURL) else{ return }
+        
+        sampler = AVAudioUnitSampler()
+        //audioEngine.attach(sampler)
+        //audioEngine.connect(sampler, to: audioEngine.mainMixerNode, format: nil)
+        
+        let audioFormat = audioFile.processingFormat
+        let audioFrameCount = UInt32(audioFile.length)
+        guard let audioFileBuffer = AVAudioPCMBuffer(pcmFormat: audioFormat, frameCapacity: audioFrameCount)  else{ return }
+        do{
+            try audioFile.read(into: audioFileBuffer)
+        } catch {
+            print("over")
+        }
+        let mainMixer = audioEngine.mainMixerNode
+        audioEngine.attach(audioFilePlayer)
+        audioEngine.connect(audioFilePlayer, to:mainMixer, format: audioFileBuffer.format)
+        
+        try? audioEngine.start()
+    
+        audioFilePlayer.play()
+        
+        //audioFilePlayer.scheduleBuffer(audioFileBuffer, at: nil, options:AVAudioPlayerNodeBufferOptions.loops)
+        audioFilePlayer.scheduleBuffer(audioFileBuffer, at: nil)
+        
+    }
+    
     @objc func letItPlay() {
-        ableToPLay = true
+        ableToPlay = true
+    }
+
+    func fade(from: Float, to: Float, duration: TimeInterval, completion: Completion?) {
+        let stepTime = 0.01
+        let times = duration / stepTime
+        let step = (to - from) / Float(times)
+        for i in 0...Int(times) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + Double(i) * stepTime) {
+                self.audioFilePlayer.volume = from + Float(i) * step
+
+                if i == Int(times) {
+                    completion?()
+                }
+            }
+        }
+    }
+
+    func fadeIn(duration: TimeInterval = 0.3, completion: Completion? = nil) {
+        fade(from: 0, to: 1, duration: duration, completion: completion)
+    }
+
+    func fadeOut(duration: TimeInterval = 0.3, completion: Completion? = nil) {
+        fade(from: 1, to: 0, duration: duration, completion: completion)
     }
     
 }
