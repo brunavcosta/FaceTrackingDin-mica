@@ -123,13 +123,22 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         if let faceAnchor = anchor as? ARFaceAnchor {
             update(withFaceAnchor: faceAnchor)
         }
+        
+        guard let faceAnchor = anchor as? ARFaceAnchor else { return }
+        
+        // 2
+        let leftSmileValue = faceAnchor.blendShapes[.jawOpen] as! CGFloat
+        let rightSmileValue = faceAnchor.blendShapes[.mouthSmileLeft] as! CGFloat
+          
+        // 3
+        print(leftSmileValue)
     }
     
     func update(withFaceAnchor faceAnchor: ARFaceAnchor) {
         
         var selectedMove: ARFaceAnchor.BlendShapeLocation? = nil
         
-        let blends: [ARFaceAnchor.BlendShapeLocation] = [.browInnerUp, .mouthRight, .jawOpen, .tongueOut, .mouthLeft, .eyeBlinkLeft, .eyeBlinkRight]
+        let blends: [ARFaceAnchor.BlendShapeLocation] = [.browInnerUp, .mouthRight, .jawOpen, .tongueOut, .mouthLeft, .mouthPucker, .mouthSmileRight]
         
         for move in blends {
             guard let faceFactor = faceAnchor.blendShapes[move] as? Float else {return}
@@ -147,23 +156,29 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         }
         
         if(self.currentMove != selectedMove) {
-            //self.ARViewDelegate.handleFaceExpression(faceExpression: selectedMove)
+            
             self.currentMove = selectedMove
+            
+            //print(self.currentMove)
+            
             if ableToPlay{
                 
                 if self.currentMove == .mouthLeft {
+                    print("eu")
                     playWithAVAudioEngine(title: "C", type: "m4a")
-                } else if self.currentMove == .eyeBlinkRight {
+                } else if self.currentMove == .jawOpen {
                     playWithAVAudioEngine(title: "D", type: "m4a")
                 } else if self.currentMove == .tongueOut {
                     playWithAVAudioEngine(title: "E", type: "m4a")
                 } else if self.currentMove == .mouthRight {
+                    print("eu")
                     playWithAVAudioEngine(title: "F", type: "m4a")
                 } else if self.currentMove == .browInnerUp {
                     playWithAVAudioEngine(title: "G", type: "m4a")
-                } else if self.currentMove == .eyeBlinkLeft {
+                } else if self.currentMove == .mouthPucker {
                     playWithAVAudioEngine(title: "A", type: "m4a")
-                } else if self.currentMove == .jawOpen {
+                } else if self.currentMove == .mouthSmileRight {
+                    print("eu")
                     playWithAVAudioEngine(title: "B", type: "m4a")
                 }
             }
