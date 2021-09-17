@@ -14,8 +14,6 @@ import CryptoKit
 
 class GameViewController: UIViewController, ARSCNViewDelegate {
     
-    var drumConductor: DrumsConductor?
-    
     var gameScene:GameScene!
     
     //Face Tracking
@@ -67,9 +65,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                 view.presentScene(gameScene)
             }
             
-            drumConductor = DrumsConductor.init()
             
-            self.drumConductor?.start()
             
             view.ignoresSiblingOrder = true
             
@@ -177,37 +173,24 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
             if ableToPlay {
                 
                 if self.currentMove == .mouthLeft {
-                    drumConductor?.playPad(padNumber: 0)
-                    //playWithAVAudioEngine(title: "C", type: "m4a")
+                    playWithAVAudioEngine(title: "C", type: "m4a")
+                    
                 } else if self.currentMove == .jawOpen {
-                    drumConductor?.playPad(padNumber: 1)
-                    //playWithAVAudioEngine(title: "D", type: "m4a")
+                    playWithAVAudioEngine(title: "D", type: "m4a")
+                    
                 } else if self.currentMove == .tongueOut {
-                    drumConductor?.playPad(padNumber: 2)
-                    //playWithAVAudioEngine(title: "E", type: "m4a")
+                    playWithAVAudioEngine(title: "E", type: "m4a")
+                    
                 } else if self.currentMove == .mouthRight {
-                    drumConductor?.playPad(padNumber: 3)
-                    //playWithAVAudioEngine(title: "F", type: "m4a")
+                    playWithAVAudioEngine(title: "F", type: "m4a")
+                    
                 } else if self.currentMove == .browInnerUp {
-                    drumConductor?.playPad(padNumber: 4)
-                    //playWithAVAudioEngine(title: "G", type: "m4a")
+                    playWithAVAudioEngine(title: "G", type: "m4a")
+                    
                 } else if self.currentMove == .mouthPucker {
-                    drumConductor?.playPad(padNumber: 5)
-                    //playWithAVAudioEngine(title: "A", type: "m4a")
+                    playWithAVAudioEngine(title: "A", type: "m4a")
+                    
                 } else if self.currentMove == .mouthSmileRight {
-                    drumConductor?.playPad(padNumber: 6)
-                    //playWithAVAudioEngine(title: "B", type: "m4a")
-                }
-            }
-        }
-        
-        if player1?.isPlaying == false {
-            DispatchQueue.main.async {
-                self.sceneView?.layer.borderColor = UIColor.systemOrange.cgColor
-            }
-        } else {
-            DispatchQueue.main.async {
-                self.sceneView?.layer.borderColor = UIColor.systemGreen.cgColor
                     playWithAVAudioEngine(title: "B", type: "m4a")
                     
                 } else { // If none move was found, it returns

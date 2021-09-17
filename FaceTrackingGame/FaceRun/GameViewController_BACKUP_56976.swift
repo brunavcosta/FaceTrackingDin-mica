@@ -177,6 +177,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
             if ableToPlay {
                 
                 if self.currentMove == .mouthLeft {
+<<<<<<< HEAD
                     drumConductor?.playPad(padNumber: 0)
                     //playWithAVAudioEngine(title: "C", type: "m4a")
                 } else if self.currentMove == .jawOpen {
@@ -197,21 +198,30 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                 } else if self.currentMove == .mouthSmileRight {
                     drumConductor?.playPad(padNumber: 6)
                     //playWithAVAudioEngine(title: "B", type: "m4a")
-                }
-            }
-        }
-        
-        if player1?.isPlaying == false {
-            DispatchQueue.main.async {
-                self.sceneView?.layer.borderColor = UIColor.systemOrange.cgColor
-            }
-        } else {
-            DispatchQueue.main.async {
-                self.sceneView?.layer.borderColor = UIColor.systemGreen.cgColor
+=======
+                    playWithAVAudioEngine(title: "C", type: "m4a")
+                    
+                } else if self.currentMove == .jawOpen {
+                    playWithAVAudioEngine(title: "D", type: "m4a")
+                    
+                } else if self.currentMove == .tongueOut {
+                    playWithAVAudioEngine(title: "E", type: "m4a")
+                    
+                } else if self.currentMove == .mouthRight {
+                    playWithAVAudioEngine(title: "F", type: "m4a")
+                    
+                } else if self.currentMove == .browInnerUp {
+                    playWithAVAudioEngine(title: "G", type: "m4a")
+                    
+                } else if self.currentMove == .mouthPucker {
+                    playWithAVAudioEngine(title: "A", type: "m4a")
+                    
+                } else if self.currentMove == .mouthSmileRight {
                     playWithAVAudioEngine(title: "B", type: "m4a")
                     
                 } else { // If none move was found, it returns
                     return
+>>>>>>> 4c2cf4b7555cafe1b403f67a70736e33a3489847
                 }
                 
                 //The common code to be executed after one move was recognized

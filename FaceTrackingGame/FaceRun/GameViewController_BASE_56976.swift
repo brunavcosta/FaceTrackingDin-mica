@@ -14,14 +14,9 @@ import CryptoKit
 
 class GameViewController: UIViewController, ARSCNViewDelegate {
     
-    var drumConductor: DrumsConductor?
-    
     var gameScene:GameScene!
-    
-    //Face Tracking
     var session:ARSession!
     
-    //Audio
     typealias Completion = (() -> Void)
     var mixer: AVAudioMixerNode = AVAudioMixerNode()
     
@@ -35,16 +30,9 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     
     var sprite: SKLabelNode?
     
-    //Play delay flag
     var timer = Timer()
     var ableToPlay = true
     
-    
-    //Constant Properties
-    let timeBetweenNotes: Double = 0.3
-    
-    
-    //MARK: - View Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -67,9 +55,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                 view.presentScene(gameScene)
             }
             
-            drumConductor = DrumsConductor.init()
             
-            self.drumConductor?.start()
             
             view.ignoresSiblingOrder = true
             
@@ -85,7 +71,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
             sceneView?.layer.masksToBounds = true
             sceneView?.clipsToBounds = true
             self.sceneView?.layer.borderWidth = 3
-            self.sceneView?.layer.borderColor = UIColor.systemGreen.cgColor
+            self.sceneView?.layer.borderColor = UIColor.systemOrange.cgColor
             
             if let sceneView = sceneView {
                 view.addSubview(sceneView)
@@ -97,6 +83,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
             
         }
         
+        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(letItPlay), userInfo: nil, repeats: true)
         do {
             try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
             try AVAudioSession.sharedInstance().setActive(true)
@@ -125,7 +112,6 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         sceneView?.delegate = self
     }
     
-    //MARK: - Methods
     override var shouldAutorotate: Bool {
         return true
     }
@@ -147,6 +133,15 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         if let faceAnchor = anchor as? ARFaceAnchor {
             update(withFaceAnchor: faceAnchor)
         }
+        
+        guard let faceAnchor = anchor as? ARFaceAnchor else { return }
+        
+        // 2
+        let leftSmileValue = faceAnchor.blendShapes[.jawOpen] as! CGFloat
+        let rightSmileValue = faceAnchor.blendShapes[.mouthSmileLeft] as! CGFloat
+          
+        // 3
+        //print(leftSmileValue)
     }
     
     func update(withFaceAnchor faceAnchor: ARFaceAnchor) {
@@ -174,29 +169,24 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
             
             self.currentMove = selectedMove
             
-            if ableToPlay {
+            //print(self.currentMove)
+            
+            if ableToPlay{
                 
                 if self.currentMove == .mouthLeft {
-                    drumConductor?.playPad(padNumber: 0)
-                    //playWithAVAudioEngine(title: "C", type: "m4a")
+                    playWithAVAudioEngine(title: "C", type: "m4a")
                 } else if self.currentMove == .jawOpen {
-                    drumConductor?.playPad(padNumber: 1)
-                    //playWithAVAudioEngine(title: "D", type: "m4a")
+                    playWithAVAudioEngine(title: "D", type: "m4a")
                 } else if self.currentMove == .tongueOut {
-                    drumConductor?.playPad(padNumber: 2)
-                    //playWithAVAudioEngine(title: "E", type: "m4a")
+                    playWithAVAudioEngine(title: "E", type: "m4a")
                 } else if self.currentMove == .mouthRight {
-                    drumConductor?.playPad(padNumber: 3)
-                    //playWithAVAudioEngine(title: "F", type: "m4a")
+                    playWithAVAudioEngine(title: "F", type: "m4a")
                 } else if self.currentMove == .browInnerUp {
-                    drumConductor?.playPad(padNumber: 4)
-                    //playWithAVAudioEngine(title: "G", type: "m4a")
+                    playWithAVAudioEngine(title: "G", type: "m4a")
                 } else if self.currentMove == .mouthPucker {
-                    drumConductor?.playPad(padNumber: 5)
-                    //playWithAVAudioEngine(title: "A", type: "m4a")
+                    playWithAVAudioEngine(title: "A", type: "m4a")
                 } else if self.currentMove == .mouthSmileRight {
-                    drumConductor?.playPad(padNumber: 6)
-                    //playWithAVAudioEngine(title: "B", type: "m4a")
+                    playWithAVAudioEngine(title: "B", type: "m4a")
                 }
             }
         }
@@ -208,25 +198,8 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         } else {
             DispatchQueue.main.async {
                 self.sceneView?.layer.borderColor = UIColor.systemGreen.cgColor
-                    playWithAVAudioEngine(title: "B", type: "m4a")
-                    
-                } else { // If none move was found, it returns
-                    return
-                }
-                
-                //The common code to be executed after one move was recognized
-                DispatchQueue.main.async {
-                    self.sceneView?.layer.borderColor = UIColor.systemOrange.cgColor
-                }
-                self.ableToPlay = false
-                timer = Timer.scheduledTimer(timeInterval: timeBetweenNotes, target: self, selector: #selector(letItPlay), userInfo: nil, repeats: false)
-
             }
-            
         }
-        
-        
-        
     }
     
     func playSound(title: String, type: String){
@@ -268,7 +241,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         audioEngine.connect(audioFilePlayer, to:mainMixer, format: audioFileBuffer.format)
         
         try? audioEngine.start()
-        
+    
         audioFilePlayer.play()
         
         //audioFilePlayer.scheduleBuffer(audioFileBuffer, at: nil, options:AVAudioPlayerNodeBufferOptions.loops)
@@ -278,11 +251,8 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     
     @objc func letItPlay() {
         ableToPlay = true
-        DispatchQueue.main.async {
-            self.sceneView?.layer.borderColor = UIColor.systemGreen.cgColor
-        }
     }
-    
+
     func fade(from: Float, to: Float, duration: TimeInterval, completion: Completion?) {
         let stepTime = 0.01
         let times = duration / stepTime
@@ -290,18 +260,18 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         for i in 0...Int(times) {
             DispatchQueue.main.asyncAfter(deadline: .now() + Double(i) * stepTime) {
                 self.audioFilePlayer.volume = from + Float(i) * step
-                
+
                 if i == Int(times) {
                     completion?()
                 }
             }
         }
     }
-    
+
     func fadeIn(duration: TimeInterval = 0.3, completion: Completion? = nil) {
         fade(from: 0, to: 1, duration: duration, completion: completion)
     }
-    
+
     func fadeOut(duration: TimeInterval = 0.3, completion: Completion? = nil) {
         fade(from: 1, to: 0, duration: duration, completion: completion)
     }
