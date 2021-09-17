@@ -152,8 +152,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
             if ableToPlay{
                 
                 if self.currentMove == .mouthLeft {
-                    sampler.startNote(0, withVelocity: 80, onChannel: 0)
-                    //playWithAVAudioEngine(title: "C", type: "m4a")
+                    playWithAVAudioEngine(title: "C", type: "m4a")
                 } else if self.currentMove == .eyeBlinkRight {
                     playWithAVAudioEngine(title: "D", type: "m4a")
                 } else if self.currentMove == .tongueOut {
