@@ -208,10 +208,8 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         } else {
             DispatchQueue.main.async {
                 self.sceneView?.layer.borderColor = UIColor.systemGreen.cgColor
-                    playWithAVAudioEngine(title: "B", type: "m4a")
+                //self.playWithAVAudioEngine(title: "B", type: "m4a")
                     
-                } else { // If none move was found, it returns
-                    return
                 }
                 
                 //The common code to be executed after one move was recognized
@@ -222,8 +220,6 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                 timer = Timer.scheduledTimer(timeInterval: timeBetweenNotes, target: self, selector: #selector(letItPlay), userInfo: nil, repeats: false)
 
             }
-            
-        }
         
         
         
