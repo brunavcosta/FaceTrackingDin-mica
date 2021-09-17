@@ -85,6 +85,17 @@
 				52D2907620DBD2C600A46370 /* GameViewController.swift */,
 				CFAEEE5726F3BEBA005B4F92 /* CameraView.swift */,
 				52D2907820DBD2C600A46370 /* Main.storyboard */,
+				8DF82BE226F53B27006DB0B1 /* Notes Sounds */,
+				52D2907B20DBD2C800A46370 /* Assets.xcassets */,
+				52D2907D20DBD2C800A46370 /* LaunchScreen.storyboard */,
+				52D2908020DBD2C800A46370 /* Info.plist */,
+			);
+			path = FaceRun;
+			sourceTree = "<group>";
+		};
+		8DF82BE226F53B27006DB0B1 /* Notes Sounds */ = {
+			isa = PBXGroup;
+			children = (
 				CFAEEE4D26F3BC82005B4F92 /* C.m4a */,
 				CFAEEE4C26F3BC81005B4F92 /* D.m4a */,
 				CFAEEE4B26F3BC81005B4F92 /* E.m4a */,
@@ -92,11 +103,8 @@
 				CFAEEE4A26F3BC81005B4F92 /* G.m4a */,
 				CFAEEE4926F3BC81005B4F92 /* A.m4a */,
 				CFAEEE4F26F3BC82005B4F92 /* B.m4a */,
-				52D2907B20DBD2C800A46370 /* Assets.xcassets */,
-				52D2907D20DBD2C800A46370 /* LaunchScreen.storyboard */,
-				52D2908020DBD2C800A46370 /* Info.plist */,
 			);
-			path = FaceRun;
+			path = "Notes Sounds";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

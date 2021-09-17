@@ -39,7 +39,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     
     
     //Constant Properties
-    let timeBetweenNotes: Double = 0.4
+    let timeBetweenNotes: Double = 0.3
     
     
     //MARK: - View Life Cycle Methods
