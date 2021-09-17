@@ -30,6 +30,8 @@ struct DrumSample {
 class DrumsConductor: ObservableObject {
     // Mark Published so View updates label on changes
     @Published private(set) var lastPlayed: String = "None"
+    
+    var generator:UIImpactFeedbackGenerator!
 
     let engine = AudioEngine()
 
@@ -51,6 +53,11 @@ class DrumsConductor: ObservableObject {
         drums.play(noteNumber: MIDINoteNumber(drumSamples[padNumber].midiNote))
         let fileName = drumSamples[padNumber].fileName
         lastPlayed = fileName.components(separatedBy: "/").last!
+        
+        generator = UIImpactFeedbackGenerator(style: .light)
+        generator.prepare()
+        
+        self.generator.impactOccurred()
     }
 
     func start() {
