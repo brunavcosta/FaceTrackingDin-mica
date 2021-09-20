@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,7 +15,6 @@
 		52D2907C20DBD2C800A46370 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52D2907B20DBD2C800A46370 /* Assets.xcassets */; };
 		52D2907F20DBD2C800A46370 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52D2907D20DBD2C800A46370 /* LaunchScreen.storyboard */; };
 		52D2908920DBE44900A46370 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D2908820DBE44900A46370 /* Player.swift */; };
-		8D3B889226F3A8D700A7A841 /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8D3B889126F3A8D700A7A841 /* AudioKit */; };
 		CFAEEE5026F3BCA8005B4F92 /* A.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CFAEEE4926F3BC81005B4F92 /* A.m4a */; };
 		CFAEEE5126F3BCA8005B4F92 /* F.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CFAEEE4E26F3BC82005B4F92 /* F.m4a */; };
 		CFAEEE5226F3BCA8005B4F92 /* G.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CFAEEE4A26F3BC81005B4F92 /* G.m4a */; };
@@ -52,7 +51,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D3B889226F3A8D700A7A841 /* AudioKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,7 +122,6 @@
 			);
 			name = FaceRun;
 			packageProductDependencies = (
-				8D3B889126F3A8D700A7A841 /* AudioKit */,
 			);
 			productName = FaceRun;
 			productReference = 52D2906B20DBD2C600A46370 /* FaceRun.app */;
@@ -156,7 +153,6 @@
 			);
 			mainGroup = 52D2906220DBD2C600A46370;
 			packageReferences = (
-				8D3B889026F3A8D700A7A841 /* XCRemoteSwiftPackageReference "AudioKit" */,
 			);
 			productRefGroup = 52D2906C20DBD2C600A46370 /* Products */;
 			projectDirPath = "";
@@ -401,25 +397,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		8D3B889026F3A8D700A7A841 /* XCRemoteSwiftPackageReference "AudioKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/AudioKit/AudioKit/";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.2.1;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		8D3B889126F3A8D700A7A841 /* AudioKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8D3B889026F3A8D700A7A841 /* XCRemoteSwiftPackageReference "AudioKit" */;
-			productName = AudioKit;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 52D2906320DBD2C600A46370 /* Project object */;
 }
